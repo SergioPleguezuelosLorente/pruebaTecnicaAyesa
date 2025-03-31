@@ -1,7 +1,11 @@
 package com.prueba;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import java.sql.SQLException;
 
 @SpringBootApplication
 public class PruebaTecnicaApplication {
@@ -9,5 +13,10 @@ public class PruebaTecnicaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PruebaTecnicaApplication.class, args);
 	}
+
+//	@Bean(initMethod = "start", destroyMethod = "stop")
+//	public Server h2Server () throws SQLException {
+//		return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
+//	}
 
 }

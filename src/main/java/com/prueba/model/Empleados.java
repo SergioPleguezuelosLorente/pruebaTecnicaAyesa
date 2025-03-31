@@ -1,17 +1,17 @@
 package com.prueba.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-public class Empleado {
+public class Empleados {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idEmpleado;
+    @Column(name="name")
     private String nombre;
+    @Column(name="last_name")
     private String apellido;
+    @Column(name="id_department")
     private int idDepartamento;
 
     public int getIdEmpleado() {

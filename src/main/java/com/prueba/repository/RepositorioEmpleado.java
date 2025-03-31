@@ -1,7 +1,9 @@
 package com.prueba.repository;
 
-import com.prueba.model.Empleado;
-import org.springframework.data.repository.CrudRepository;
+import com.prueba.model.Empleados;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface RepositorioEmpleado extends CrudRepository<Empleado, Integer> {
+@Repository
+public interface RepositorioEmpleado extends JpaRepository<Empleados, Integer> {
 }
