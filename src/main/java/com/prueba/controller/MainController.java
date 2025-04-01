@@ -1,14 +1,16 @@
 package com.prueba.controller;
 
-import com.prueba.model.Empleados;
+import com.prueba.model.Empleado;
 import com.prueba.service.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class MainController implements ErrorController {
     private static final String PATH = "/error";
 
@@ -20,24 +22,36 @@ public class MainController implements ErrorController {
         return "Error handling...";
     }
 
-    @RequestMapping(path = "/")
-    public String mainPage (){
-        return "To create a new user go to /create";
+    @GetMapping("/")
+    public String mainPage(){
+        return "homepage";
     }
 
-    @PostMapping(path = "/create")
-    public Boolean crearEmpleado (String name, String ape, int idDepartamento) {
-        Empleados e = new Empleados();
-        e.setNombre(name);
-        e.setApellido(ape);
-        e.setIdDepartamento(idDepartamento);
-//        userRepository.save(e);
-        return true;
+    @GetMapping("/empleado")
+    public String empleado(Model model){
+        model.addAttribute("empleados", new Empleado());
+        return "empleado";
     }
+
+    @PostMapping(path = "/createEmpleado")
+    public String crearEmpleado (@ModelAttribute Empleado empleado, Model model) {
+        System.out.println(empleado.toString());
+        model.addAttribute("empleados", new Empleado());
+        empleadoService.save(empleado);
+        model.addAttribute("message", "Has creado un empleado correctamente");
+        return "empleado"; // this makes a GET to "service" endpoint
+    }
+
+    @GetMapping("/departamento")
+    public String departamento(){
+        return "departamento";
+    }
+
+
 
     @GetMapping(path="/getEmpleados")
-    public @ResponseBody Iterable<Empleados> getEmpleados() {
-        List<Empleados> empleados = empleadoService.list();
+    public @ResponseBody Iterable<Empleado> getEmpleados() {
+        List<Empleado> empleados = empleadoService.list();
         //userRepository.findAll()
         return empleados;
     }

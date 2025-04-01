@@ -1,17 +1,17 @@
 package com.prueba.service;
 
-import com.prueba.model.Departamentos;
+import com.prueba.model.Departamento;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DepartamentoService {
-    public Departamentos saveDepartamento(Departamentos departamento){
+    public Departamento saveDepartamento(Departamento departamento){
         return departamento;
     }
 
-    public List<Departamentos> listaDepartamentos(){
-        List<Departamentos> lista = new ArrayList();
+    public List<Departamento> listaDepartamentos(){
+        List<Departamento> lista = new ArrayList();
         return lista;
     }
 

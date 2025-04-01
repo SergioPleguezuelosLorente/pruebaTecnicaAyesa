@@ -1,6 +1,6 @@
 package com.prueba.model;
 
-public class Departamentos {
+public class Departamento {
     private int idDepartamento;
     private String nombre;
 

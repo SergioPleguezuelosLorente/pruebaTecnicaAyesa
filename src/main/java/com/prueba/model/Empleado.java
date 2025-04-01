@@ -3,7 +3,7 @@ package com.prueba.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Empleados {
+public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idEmpleado;
@@ -13,6 +13,12 @@ public class Empleados {
     private String apellido;
     @Column(name="id_department")
     private int idDepartamento;
+
+    public Empleado() {}
+
+    public Empleado(String nombre) {
+        this.nombre = nombre;
+    }
 
     public int getIdEmpleado() {
         return idEmpleado;
@@ -44,5 +50,15 @@ public class Empleados {
 
     public void setIdDepartamento(int idDepartamento) {
         this.idDepartamento = idDepartamento;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleados{" +
+                "idEmpleado=" + idEmpleado +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", idDepartamento=" + idDepartamento +
+                '}';
     }
 }
