@@ -14,18 +14,6 @@ public class EmpleadoService {
     private RepositorioEmpleado repositorioEmpleado;
 
     public Empleado save(Empleado empleado){
-//        Transaction t = null;
-//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-//            t = session.beginTransaction();
-//            session.save(empleado);
-//            t.commit();
-//        }
-//        catch (Exception e) {
-//            if (t != null){
-//                t.rollback();
-//            }
-//            e.printStackTrace();
-//        }
         return repositorioEmpleado.save(empleado);
     }
 
@@ -46,6 +34,6 @@ public class EmpleadoService {
     }
 
     void deleteEmpleados(int idEmpleado){
-
+        repositorioEmpleado.deleteById(idEmpleado);
     }
 }

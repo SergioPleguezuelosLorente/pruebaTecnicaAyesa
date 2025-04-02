@@ -1,11 +1,15 @@
 package com.prueba.model;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
+@Component
 @Entity
+@Table(name = "Empleados")
 public class Empleado {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_empleado")
     private int idEmpleado;
     @Column(name="name")
     private String nombre;
