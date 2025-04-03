@@ -1,10 +1,23 @@
 <!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<h1>Listar Empleados</h1>
+<a href="/">Inicio</a>
+<a href="/empleado">Atrás</a>
+<form th:action="listadoEmpleados" th:object="${empleado}" th:method="post">
+    <p>Departamento:
+        <select name="departamentos" id="departamento" th:field="*{idDepartamento}">
+            <option value="0">Selecciona un departamento</option>
+            <option th:each="departamento : ${lista}" th:value="${departamento.idDepartamento}" th:text="${departamento.nombre}"></option>
+        </select>
+    </p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset"/></p>
+</form>
 </body>
 </html>

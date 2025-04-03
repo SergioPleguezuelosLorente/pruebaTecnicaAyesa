@@ -4,12 +4,15 @@ import com.prueba.model.Departamento;
 import com.prueba.model.Empleado;
 import com.prueba.service.DepartamentoService;
 import com.prueba.service.EmpleadoService;
+import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.Query;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +36,7 @@ public class MainController implements ErrorController {
         return "homepage";
     }
 
-    @GetMapping("/empleado")
+    @GetMapping("/crearEmpleado")
     public String empleado(Model model){
         model.addAttribute("empleado", new Empleado());
         List<Departamento> lista = departamentoService.list();
@@ -63,12 +66,42 @@ public class MainController implements ErrorController {
         return "departamento";
     }
 
-
-
-
     @GetMapping(path="/getEmpleados")
-    public @ResponseBody Iterable<Empleado> getEmpleados() {
+    public @ResponseBody Iterable<Empleado> getEmpleados(Model model) {
         List<Empleado> empleados = empleadoService.list();
         return empleados;
+    }
+
+    @GetMapping(path="/buscarEmpleado")
+    public String buscarEmpleado() {
+        return "buscarEmpleado";
+    }
+
+    @GetMapping("/listarEmpleados")
+    public String listarEmpleados(Model model){
+        model.addAttribute("empleado", new Empleado());
+        List<Departamento> lista = departamentoService.list();
+        model.addAttribute("lista", lista);
+        return "listarEmpleados";
+    }
+
+    @PostMapping(path="/listadoEmpleados")
+//    @ResponseBody Iterable<Empleado>
+    public String listadoEmpleados(Model model, int idDepartamento) {
+        List<Empleado> empleados = empleadoService.listEmpleadoByDepartamento(idDepartamento);
+        model.addAttribute("lista", empleados);
+        return "listaEmpleados";
+    }
+
+
+
+    @GetMapping("/borrarEmpleado")
+    public String borrarEmpleado(){
+        return "borrarEmpleado";
+    }
+
+    @GetMapping("/empleado")
+    public String empleadosMain(){
+        return "empleado";
     }
 }

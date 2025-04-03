@@ -21,6 +21,11 @@ public class EmpleadoService {
         return repositorioEmpleado.findAll();
     }
 
+    public List<Empleado> listEmpleadoByDepartamento(int idDepartamento){
+        return repositorioEmpleado.listEmpleadosByDepartamento(idDepartamento);
+    }
+
+
     public Empleado getEmpleadoById(int idEmpleado) {
         return repositorioEmpleado.findById(idEmpleado).orElse(new Empleado());
     }

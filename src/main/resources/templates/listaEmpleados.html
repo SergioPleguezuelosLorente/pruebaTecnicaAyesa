@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Buscar empleado</h1>
+<a href="/">Inicio</a>
+<a href="/empleado">Atrás</a>
+<div>
+    <ul>
+
+        <li th:each="empleado : ${lista}" th:value="${empleado.idEmpleado}">
+            <span th:text="${empleado.idEmpleado}"></span>
+            <span th:text="${empleado.nombre}"></span>
+            <span th:text="${empleado.apellido}"></span>
+            <button>Detalle</button>
+            <button th:data-confirm-delete="|¿Estás seguro que quieres borrar el empleado ${empleado.nombre}?|"
+                    onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
+                Eliminar</button>
+        </li>
+    </ul>
+</div>
+
+</body>
+
+</html>

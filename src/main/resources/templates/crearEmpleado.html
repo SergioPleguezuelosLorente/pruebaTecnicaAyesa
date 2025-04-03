@@ -5,6 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<a href="/">Inicio</a>
+<a href="/empleado">Atrás</a>
 <form th:action="createEmpleado" th:object="${empleado}" th:method="post">
     <p>Nombre: <input type="text" th:field="*{nombre}" name="nombre"/></p>
     <p>Apellido: <input type="text" th:field="*{apellido}" name="apellido"/></p>
