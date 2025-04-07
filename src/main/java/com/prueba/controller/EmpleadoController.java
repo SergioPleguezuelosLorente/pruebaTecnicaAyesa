@@ -2,23 +2,18 @@ package com.prueba.controller;
 
 import com.prueba.model.Departamento;
 import com.prueba.model.Empleado;
-import com.prueba.repository.RepositorioEmpleado;
 import com.prueba.service.DepartamentoService;
 import com.prueba.service.EmpleadoService;
-import jakarta.persistence.Entity;
-import jakarta.persistence.NamedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class MainController implements ErrorController {
+public class EmpleadoController implements ErrorController {
     private static final String PATH = "/error";
 
     @Autowired
@@ -52,8 +47,6 @@ public class MainController implements ErrorController {
         model.addAttribute("message", "Has creado un empleado correctamente");
         return "homepage";
     }
-
-
 
     @GetMapping(path="/getEmpleados")
     public @ResponseBody Iterable<Empleado> getEmpleados(Model model) {
