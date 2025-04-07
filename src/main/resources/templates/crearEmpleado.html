@@ -3,22 +3,58 @@
 <head>
     <title>Getting Started: Handling Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/templatemo-topic-listing.css}"/>
 </head>
 <body>
-<a href="/">Inicio</a>
-<a href="/empleado">Atrás</a>
-<form th:action="createEmpleado" th:object="${empleado}" th:method="post">
-    <p>Nombre: <input type="text" th:field="*{nombre}" name="nombre"/></p>
-    <p>Apellido: <input type="text" th:field="*{apellido}" name="apellido"/></p>
-    <p>Departamento:
-        <select name="departamentos" id="departamento" th:field="*{idDepartamento}">
-            <option value="0">Selecciona un departamento</option>
-            <option th:each="departamento : ${lista}" th:value="${departamento.idDepartamento}" th:text="${departamento.nombre}"></option>
-        </select>
-    </p>
 
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset"/></p>
-</form>
-<br/> <h1 th:text="${message}">message</h1>
+
+
+<div id="sticky-wrapper" class="sticky-wrapper" style="height: 78px;">
+    <nav class="navbar navbar-expand-lg" style="width: 1849px;">
+        <div class="container">
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="navitem"><a href="/" class="nav-link click-scroll active"></a></li>
+            </ul>
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="navitem"><a href="/" class="nav-link click-scroll inactive">Inicio</a></li>
+            </ul>
+
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="navitem"><a href="/empleado" class="nav-link click-scroll inactive">Empleado</a></li>
+            </ul>
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="navitem"><a href="/departamento" class="nav-link click-scroll inactive">Departamento</a>
+                </li>
+            </ul>
+        </div>
+</div>
+
+<section class="hero-section">
+    <div class="containerParent" style="padding-bottom:50px;">
+        <div class="center">
+            <h3 class="text-white">Crear Empleados</h3>
+
+            <form th:action="createEmpleado" th:object="${empleado}" th:method="post">
+                <p class="text-white">Nombre: <input type="text" th:field="*{nombre}" name="nombre"/></p>
+                <p class="text-white">Apellido: <input type="text" th:field="*{apellido}" name="apellido"/></p>
+                <p class="text-white">Departamento:
+                    <select name="departamentos" id="departamento" th:field="*{idDepartamento}">
+                        <option value="0">Selecciona un departamento</option>
+                        <option th:each="departamento : ${lista}" th:value="${departamento.idDepartamento}" th:text="${departamento.nombre}"></option>
+                    </select>
+                </p>
+
+                <p>
+                    <input class="custom-btn" type="submit" value="Crear" />
+                    <input class="custom-btn" type="reset" value="Borrar"/>
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
 </body>
 </html>

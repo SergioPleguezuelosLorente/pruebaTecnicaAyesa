@@ -2,6 +2,7 @@ package com.prueba.controller;
 
 import com.prueba.model.Departamento;
 import com.prueba.model.Empleado;
+import com.prueba.repository.RepositorioEmpleado;
 import com.prueba.service.DepartamentoService;
 import com.prueba.service.EmpleadoService;
 import jakarta.persistence.Entity;
@@ -49,7 +50,7 @@ public class MainController implements ErrorController {
         model.addAttribute("empleados", new Empleado());
         empleadoService.addEmpleado(empleado);
         model.addAttribute("message", "Has creado un empleado correctamente");
-        return "crearEmpleado";
+        return "homepage";
     }
 
     @GetMapping("/departamento")
@@ -63,7 +64,7 @@ public class MainController implements ErrorController {
         model.addAttribute("departamentos", new Departamento());
         departamentoService.addDepartamento(departamento);
         model.addAttribute("message", "Has creado un departamento correctamente");
-        return "departamento";
+        return "homepage";
     }
 
     @GetMapping(path="/getEmpleados")
@@ -90,14 +91,26 @@ public class MainController implements ErrorController {
     public String listadoEmpleados(Model model, int idDepartamento) {
         List<Empleado> empleados = empleadoService.listEmpleadoByDepartamento(idDepartamento);
         model.addAttribute("lista", empleados);
+        model.addAttribute("empleado", new Empleado());
         return "listaEmpleados";
     }
 
 
 
-    @GetMapping("/borrarEmpleado")
-    public String borrarEmpleado(){
+    @PostMapping(value="/vistaEmpleado", params="eliminar")
+    public String borrarEmpleado(@RequestParam int idEmpleado, @RequestParam String nombre, Model model){
+        model.addAttribute(nombre);
+        empleadoService.deleteEmpleados(idEmpleado);
         return "borrarEmpleado";
+    }
+
+    @PostMapping(value="/vistaEmpleado", params="detalle")
+    public String detalleEmpleado(@RequestParam int idEmpleado, Model model){
+        Empleado empleado = empleadoService.getEmpleadoById(idEmpleado);
+        Departamento departamento = departamentoService.getDepartamentoById(empleado.getIdDepartamento());
+        model.addAttribute(empleado);
+        model.addAttribute(departamento);
+        return "detalleEmpleado";
     }
 
     @GetMapping("/empleado")

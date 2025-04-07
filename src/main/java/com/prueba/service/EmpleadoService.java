@@ -38,7 +38,7 @@ public class EmpleadoService {
         repositorioEmpleado.save(empleado);
     }
 
-    void deleteEmpleados(int idEmpleado){
+    public void deleteEmpleados(int idEmpleado){
         repositorioEmpleado.deleteById(idEmpleado);
     }
 }

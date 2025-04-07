@@ -2,37 +2,44 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Getting Started: Handling Form Submission</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{/css/templatemo-topic-listing.css}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/templatemo-topic-listing.css}"/>
 </head>
 <body>
-<div id="sticky-wrapper" class="sticky-wrapper" style="height: 78px;"><nav class="navbar navbar-expand-lg" style="width: 1849px;">
+
+<div id="sticky-wrapper" class="sticky-wrapper" style="height: 78px;">
     <nav class="navbar navbar-expand-lg" style="width: 1849px;">
         <div class="container">
             <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="navitem"><a href="/" class="nav-link click-scroll active"></a></li>
+            </ul>
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
                 <li class="navitem"><a href="/" class="nav-link click-scroll inactive">Inicio</a></li>
             </ul>
+
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="navitem"><a href="/empleado" class="nav-link click-scroll inactive">Empleado</a></li>
+            </ul>
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="navitem"><a href="/departamento" class="nav-link click-scroll active">Departamento</a>
+                </li>
             </ul>
         </div>
-    </nav>
 </div>
-<section class="hero-section d-flex justify-content-center align-items-center">
-    <div class="container">
-        <h1 class="text-white text-center">Crea un departamento</h1>
+<section class="hero-section">
+    <div class="containerParent" style="">
         <div class="center">
+            <h3 class="text-white">Crea un departamento</h3>
             <form class="custom-form" th:action="createDepartamento" th:object="${departamento}" th:method="post">
                 <p class="text-white">Nombre: <input type="text" th:field="*{nombre}" name="nombre"/></p>
-                <p><input type="submit" value="Submit" /> <input type="reset" value="Reset"/></p>
+                <p>
+                    <input class="custom-btn" type="submit" value="Crear"/>
+                    <input class="custom-btn" type="reset" value="Borrar"/>
+                </p>
             </form>
-            <br/> <h6 class="text-white text-center" th:text="${message}">message</h6>
         </div>
-
     </div>
-</section>
-
-<section class="featured-section">
-
 </section>
 
 </body>
