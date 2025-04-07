@@ -1,0 +1,11 @@
+CREATE TABLE departamento (id_department INT NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50) NOT NULL);
+
+CREATE TABLE empleados (id_empleado INT NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT, 
+name VARCHAR(50) NOT NULL, last_name VARCHAR(80) NOT NULL, id_department INT, 
+FOREIGN KEY (id_department) REFERENCES departamento(id_department));
+
+
+INSERT INTO empleados(name, last_name, id_department) VALUES ('Jose Roberto', 'Nuñez Rodriguez', 1), ('Luis Antonio', 'Lopez Lorca', 1), ('Juan Carlos', 'Fernandez Fernandez', 2), ('Jorge', 'Garcia Mesa', 2), ('Maria', 'Sanchez Muñoz', 3), ('Francisco', 'Sanchez Sanchez', 4), ('Luis Antonio', 'Lopez Lopez', '3), ('Manuel', 'Garcia Rodriguez', 4)
+
+
+INSERT INTO departamento (name) VALUES ('Comercio'), ('Contabilidad'), ('Desarrollo'), ('Finanzas'), ('Marketing'), ('Recursos humanos')

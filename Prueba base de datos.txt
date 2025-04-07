@@ -1,0 +1,58 @@
+CREATE TABLE provincias (id_prov int NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT, descripcion VARCHAR (50), baja BOOLEAN DEFAULT false);
+
+CREATE TABLE municipio (id_muni int NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT, descripcion VARCHAR (50), id_prov int NOT NULL, num_habitantes BIGINT, baja BOOLEAN DEFAULT false, FOREIGN KEY (id_prov) REFERENCES provincias(id_prov));
+
+CREATE TABLE usuarios
+(dni int(8) NOT NULL UNIQUE PRIMARY KEY, nombre VARCHAR (20) NOT NULL, apellidos VARCHAR (50) NOT NULL, num_tel int(9) NOT NULL, 
+direccion VARCHAR(100), id_prov int NOT NULL, baja BOOLEAN DEFAULT false, FOREIGN KEY (id_prov) REFERENCES provincias(id_prov));
+
+INSERT INTO PROVINCIAS (descripcion) VALUES ('Valencia'), ('Granada'), ('Malaga'), ('Barcelona'), ('Madrid') 
+
+
+INSERT INTO municipio (descripcion, id_prov, num_habitantes) VALUES ('Iznalloz', 2, 5134), ('Deifontes', 2, 2627), ('Dehesas Viejas', 2, 705), ('Guadix', 2, 419), ('Darro', 2, 1599), ('Domingo Perez', 2, 890)
+
+INSERT INTO usuarios (dni, nombre, apellidos, num_tel, direccion, id_prov, baja) VALUES ('18568545', 'Juan', 'Ortiz Pietro', 794010719, 'Granada', 2, false), ('70614905', 'Rafael', 'Ortiz Rodriguez', 726232047, 'Malaga', 3, false), ('70646795', 'Marcos', 'Antonio Gutierrez', 738466671, 'Valencia', 1, false),  ('10044394', 'Marcos', 'Heredia Rodriguez', 706734508, 'Valencia', 1, true), ('49353674', 'Manuel', 'Marcos Antonio', 600745606, 'Valencia', 1, true), ('67035469', 'Luis', 'Rodriguez Rodriguez', 769442710, 'Valencia', 1, false)
+
+
+
+[2.2] ¿Cuál sería la instrucción de consulta para recuperar el DNI, nombre y apellidos de
+todos los usuarios de una misma población, por ejemplo = ‘Valencia’? Tener en
+cuenta que no se quieren obtener los datos con baja lógica.
+SELECT dni, nombre, apellidos FROM usuarios WHERE id_prov = 1 AND baja = false 
+
+
+[2.3] ¿Cuál sería la instrucción de consulta para recuperar el número total de USUARIOS de
+baja?
+SELECT COUNT(*) FROM usuarios WHERE baja = true
+
+
+[2.4] Crear una función, tendrá como parámetro de entrada (P_cod_municipio). La función
+buscará en la tabla “MUNICIPIOS” por el código único que identifica cada municipio.
+Devolverá TRUE si se cumple:
+
+
+
+
+SELECT 
+CASE
+    WHEN num_habitantes >= 1000 THEN true
+    WHEN baja = false  AND id_prov= 3 AND num_habitantes >= 400  AND num_habitantes < 1000 THEN true
+    ELSE false
+END AS function
+FROM municipio
+WHERE id_muni = ?
+
+
+
+
+
+
+
+CREATE TABLE departamento (id_department INT NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50) NOT NULL);
+
+CREATE TABLE empleados (id_empleado INT NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT, 
+name VARCHAR(50) NOT NULL, last_name VARCHAR(80) NOT NULL, id_department INT, 
+FOREIGN KEY (id_department) REFERENCES departamento(id_department));
+
+
+INSERT INTO empleados(name, last_name, id_department) VALUES ('Jose Roberto', 'Nuñez Rodriguez', 1), ('Luis Antonio', 'Lopez Lorca', 1), ('Juan Carlos', 'Fernandez Fernandez', 2), ('Jorge', 'Garcia Mesa', 2), ('Maria', 'Sanchez Muñoz', 3), ('Francisco', 'Sanchez Sanchez', 4), ('Sancho', 'Panza', 3), ('Quijote', 'De la Mancha', 4)
