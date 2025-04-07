@@ -53,19 +53,7 @@ public class MainController implements ErrorController {
         return "homepage";
     }
 
-    @GetMapping("/departamento")
-    public String departamento(Model model){
-        model.addAttribute("departamento", new Departamento());
-        return "departamento";
-    }
 
-    @PostMapping(path = "/createDepartamento")
-    public String crearDepartamento (@ModelAttribute Departamento departamento, Model model) {
-        model.addAttribute("departamentos", new Departamento());
-        departamentoService.addDepartamento(departamento);
-        model.addAttribute("message", "Has creado un departamento correctamente");
-        return "homepage";
-    }
 
     @GetMapping(path="/getEmpleados")
     public @ResponseBody Iterable<Empleado> getEmpleados(Model model) {
