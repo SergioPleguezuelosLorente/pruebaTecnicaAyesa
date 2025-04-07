@@ -90,7 +90,10 @@ public class MainController implements ErrorController {
 //    @ResponseBody Iterable<Empleado>
     public String listadoEmpleados(Model model, int idDepartamento) {
         List<Empleado> empleados = empleadoService.listEmpleadoByDepartamento(idDepartamento);
+        Departamento departamento = departamentoService.getDepartamentoById(idDepartamento);
         model.addAttribute("lista", empleados);
+        System.out.println(departamento.getNombre());
+        model.addAttribute("departamento", departamento);
         model.addAttribute("empleado", new Empleado());
         return "listaEmpleados";
     }
@@ -101,7 +104,8 @@ public class MainController implements ErrorController {
     public String borrarEmpleado(@RequestParam int idEmpleado, @RequestParam String nombre, Model model){
         model.addAttribute(nombre);
         empleadoService.deleteEmpleados(idEmpleado);
-        return "borrarEmpleado";
+        model.addAttribute("message", "Has eliminado un empleado correctamente");
+        return "homepage";
     }
 
     @PostMapping(value="/vistaEmpleado", params="detalle")

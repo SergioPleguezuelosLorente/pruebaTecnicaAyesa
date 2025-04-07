@@ -40,8 +40,7 @@
                 <p class="text-white">Apellido: <input type="text" th:field="*{apellido}" name="apellido"/></p>
                 <p class="text-white">Departamento:
                     <select name="departamentos" id="departamento" th:field="*{idDepartamento}">
-                        <option value="0">Selecciona un departamento</option>
-                        <option th:each="departamento : ${lista}" th:value="${departamento.idDepartamento}" th:text="${departamento.nombre}"></option>
+                        <option th:each="departamento : ${lista}" th:value="${departamento.idDepartamento}" th:text="${departamento.nombre}">Selecciona un departamento</option>
                     </select>
                 </p>
 

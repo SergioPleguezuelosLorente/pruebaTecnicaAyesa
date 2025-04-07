@@ -4,31 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{/css/templatemo-topic-listing.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/templatemo-topic-listing.css}"/>
 </head>
 <body>
-<h1>Buscar empleado</h1>
-<a href="/">Inicio</a>
-<a href="/empleado">Atrás</a>
-<div>
-    <ul>
 
-        <li th:each="empleado : ${lista}" th:value="${empleado.idEmpleado}">
-            <form th:action="vistaEmpleado" th:object="${empleado}" th:method="post">
-                <input type="hidden" name="idEmpleado" th:value="${empleado.idEmpleado}">
-                <input type="hidden" name="nombre" th:value="${empleado.nombre}">
-                <span th:text="${empleado.idEmpleado}"></span>
-                <span th:text="${empleado.nombre}"></span>
-                <span th:text="${empleado.apellido}"></span>
-                <input class="custom-btn" type="submit" name="detalle" value="Detalle"/>
-                <input class="custom-btn" th:data-confirm-delete="|¿Estás seguro que quieres borrar el empleado ${empleado.nombre}?|"
-                       onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
-                       type="submit" name="eliminar" value="Eliminar"/>
-            </form>
-        </li>
-    </ul>
+
+<div id="sticky-wrapper" class="sticky-wrapper" style="height: 78px;">
+    <nav class="navbar navbar-expand-lg" style="width: 1849px;">
+        <div class="container">
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="navitem"><a href="/" class="nav-link click-scroll active"></a></li>
+            </ul>
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="navitem"><a href="/" class="nav-link click-scroll inactive">Inicio</a></li>
+            </ul>
+
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="navitem"><a href="/empleado" class="nav-link click-scroll inactive">Empleado</a></li>
+            </ul>
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="navitem"><a href="/departamento" class="nav-link click-scroll inactive">Departamento</a>
+                </li>
+            </ul>
+        </div>
 </div>
+
+<section class="hero-section">
+    <div class="listado">
+            <h3 class="text-white">Lisda de empleados de <span class="text-white" th:text="${#strings.toLowerCase(departamento.nombre)}"></span></h3>
+            <ul>
+                <li th:each="empleado : ${lista}" th:value="${empleado.idEmpleado}">
+                    <form th:action="vistaEmpleado" th:object="${empleado}" th:method="post">
+                        <input type="hidden" name="idEmpleado" th:value="${empleado.idEmpleado}">
+                        <input type="hidden" name="nombre" th:value="${empleado.nombre}">
+                        <span class="text-white" th:text="${empleado.idEmpleado}"></span>
+                        <span class="text-white" th:text="${empleado.nombre}"></span>
+                        <span class="text-white" th:text="${empleado.apellido}"></span>
+                        <input class="custom-btn" type="submit" name="detalle" value="Detalle"/>
+                        <input class="custom-btn"
+                               th:data-confirm-delete="|¿Estás seguro que quieres borrar el empleado ${empleado.nombre}?|"
+                               onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
+                               type="submit" name="eliminar" value="Eliminar"/>
+                    </form>
+                </li>
+            </ul>
+    </div>
+</section>
 
 </body>
 

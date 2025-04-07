@@ -37,7 +37,6 @@
             <form class="custom-form" th:action="listadoEmpleados" th:object="${empleado}" th:method="post">
                 <p class="text-white">Departamento:
                     <select name="departamentos" id="departamento" th:field="*{idDepartamento}">
-                        <option value="0">Selecciona un departamento</option>
                         <option th:each="departamento : ${lista}" th:value="${departamento.idDepartamento}"
                                 th:text="${departamento.nombre}"></option>
                     </select>
